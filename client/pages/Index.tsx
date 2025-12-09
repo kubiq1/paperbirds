@@ -121,7 +121,21 @@ export default function Index() {
           </div>
         </section>
 
-        <aside className="pointer-events-auto fixed bottom-4 right-4 z-20 w-full max-w-xs rounded-2xl border border-white/10 bg-slate-950/80 px-4 py-3 text-xs text-sky-100 shadow-[0_18px_45px_rgba(15,23,42,0.95)] backdrop-blur-xl">
+        {!isControlsOpen && (
+          <button
+            onClick={() => setIsControlsOpen(true)}
+            className="pointer-events-auto fixed bottom-4 right-4 z-20 flex h-14 w-14 items-center justify-center rounded-full border border-white/20 bg-gradient-to-br from-sky-400 to-sky-500 shadow-[0_8px_32px_rgba(56,189,248,0.6)] transition-all duration-200 hover:scale-110 hover:shadow-[0_12px_48px_rgba(56,189,248,0.8)]"
+            title="Open birds field controls"
+          >
+            <Settings className="h-6 w-6 text-slate-950" />
+          </button>
+        )}
+
+        <aside
+          className={`pointer-events-auto fixed bottom-4 right-4 z-20 w-full max-w-xs rounded-2xl border border-white/10 bg-slate-950/80 px-4 py-3 text-xs text-sky-100 shadow-[0_18px_45px_rgba(15,23,42,0.95)] backdrop-blur-xl transition-all duration-200 ${
+            isControlsOpen ? "opacity-100" : "pointer-events-none opacity-0"
+          }`}
+        >
           <div className="mb-2 flex items-center justify-between">
             <div className="flex flex-col">
               <span className="text-[0.65rem] font-semibold tracking-[0.24em] uppercase text-sky-200/90">
@@ -131,6 +145,13 @@ export default function Index() {
                 Tweak Vanta parameters live
               </span>
             </div>
+            <button
+              onClick={() => setIsControlsOpen(false)}
+              className="text-sky-100/60 transition-colors hover:text-sky-100"
+              title="Close controls"
+            >
+              ✕
+            </button>
           </div>
 
           <div className="space-y-3">
