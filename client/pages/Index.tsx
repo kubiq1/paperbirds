@@ -124,10 +124,11 @@ export default function Index() {
         {!isControlsOpen && (
           <button
             onClick={() => setIsControlsOpen(true)}
-            className="pointer-events-auto fixed bottom-4 right-4 z-20 flex h-14 w-14 items-center justify-center rounded-full border border-white/20 bg-gradient-to-br from-sky-400 to-sky-500 shadow-[0_8px_32px_rgba(56,189,248,0.6)] transition-all duration-200 hover:scale-110 hover:shadow-[0_12px_48px_rgba(56,189,248,0.8)]"
+            className="pointer-events-auto fixed bottom-4 right-4 z-20 flex items-center gap-2 rounded-full border border-white/20 bg-gradient-to-br from-sky-400 to-sky-500 px-4 py-3 text-sm font-semibold text-slate-950 shadow-[0_8px_32px_rgba(56,189,248,0.6)] transition-all duration-200 hover:scale-105 hover:shadow-[0_12px_48px_rgba(56,189,248,0.8)]"
             title="Open birds field controls"
           >
-            <Settings className="h-6 w-6 text-slate-950" />
+            <Settings className="h-5 w-5" />
+            <span>BIRDS FIELD CONTROLS</span>
           </button>
         )}
 
