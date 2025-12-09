@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { Settings } from "lucide-react";
 import { BirdsBackground } from "../components/BirdsBackground";
 
 function numberToHex(value: number) {
@@ -20,6 +21,7 @@ export default function Index() {
   const [alignment, setAlignment] = useState(53);
   const [cohesion, setCohesion] = useState(16);
   const [wingSpan, setWingSpan] = useState(16);
+  const [isControlsOpen, setIsControlsOpen] = useState(false);
 
   const mappedQuantity = useMemo(
     () => mapQuantitySliderToVanta(quantity),
