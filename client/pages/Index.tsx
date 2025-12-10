@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { Settings } from "lucide-react";
 import { BirdsBackground } from "../components/BirdsBackground";
 
 function numberToHex(value: number) {
@@ -20,6 +21,7 @@ export default function Index() {
   const [alignment, setAlignment] = useState(53);
   const [cohesion, setCohesion] = useState(16);
   const [wingSpan, setWingSpan] = useState(16);
+  const [isControlsOpen, setIsControlsOpen] = useState(false);
 
   const mappedQuantity = useMemo(
     () => mapQuantitySliderToVanta(quantity),
@@ -119,8 +121,23 @@ export default function Index() {
           </div>
         </section>
 
-        <aside className="pointer-events-auto fixed bottom-4 right-4 z-20 w-full max-w-xs rounded-2xl border border-white/10 bg-slate-950/80 px-4 py-3 text-xs text-sky-100 shadow-[0_18px_45px_rgba(15,23,42,0.95)] backdrop-blur-xl">
-          <div className="mb-2 flex items-center justify-between">
+        {!isControlsOpen && (
+          <button
+            onClick={() => setIsControlsOpen(true)}
+            className="pointer-events-auto fixed bottom-4 right-4 z-20 flex items-center gap-2 rounded-full border border-white/20 bg-gradient-to-br from-sky-400 to-sky-500 px-4 py-3 text-sm font-semibold text-slate-950 shadow-[0_8px_32px_rgba(56,189,248,0.6)] transition-all duration-200 hover:scale-105 hover:shadow-[0_12px_48px_rgba(56,189,248,0.8)]"
+            title="Open birds field controls"
+          >
+            <Settings className="h-5 w-5" />
+            <span>BIRDS FIELD CONTROLS</span>
+          </button>
+        )}
+
+        <aside
+          className={`pointer-events-auto fixed bottom-4 right-4 z-50 w-full max-w-xs max-h-[85vh] rounded-2xl border border-white/10 bg-slate-950/95 text-xs text-sky-100 shadow-[0_18px_45px_rgba(15,23,42,0.95)] backdrop-blur-xl transition-all duration-200 flex flex-col ${
+            isControlsOpen ? "opacity-100 visible" : "pointer-events-none opacity-0 invisible"
+          }`}
+        >
+          <div className="flex items-center justify-between px-4 py-3 flex-shrink-0 border-b border-white/5">
             <div className="flex flex-col">
               <span className="text-[0.65rem] font-semibold tracking-[0.24em] uppercase text-sky-200/90">
                 Birds field controls
@@ -129,9 +146,16 @@ export default function Index() {
                 Tweak Vanta parameters live
               </span>
             </div>
+            <button
+              onClick={() => setIsControlsOpen(false)}
+              className="ml-2 flex-shrink-0 text-sky-100/60 transition-colors hover:text-sky-100"
+              title="Close controls"
+            >
+              ✕
+            </button>
           </div>
 
-          <div className="space-y-3">
+          <div className="space-y-3 overflow-y-auto px-4 py-3 flex-1">
             <div className="space-y-1">
               <div className="flex items-center justify-between">
                 <span className="text-[0.65rem] text-sky-100/80">Quantity</span>
